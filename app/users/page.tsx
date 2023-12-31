@@ -7,6 +7,12 @@ interface Address {
   zipcode: string;
 }
 
+type Company = {
+  name: string;
+  catchPhrase: string;
+  bs: string;
+}
+
 interface User {
   id: number;
   name: string;
@@ -15,6 +21,7 @@ interface User {
   address: Address;
   phone: number;
   website: string;
+  company: Company;
 }
 
 const UsersPage = async () => {
@@ -25,25 +32,28 @@ const UsersPage = async () => {
   return (
     <div className="p-5">
       <h1 className='text-4xl font-bold text-center'>List of Users</h1>
-      <ul className='grid gap-6 grid-cols-3'>
+      <ul className='grid gap-6 grid-cols-3 '>
         {users.map(user => {
           return (
           <li 
-            className="flex my-2 gap-3" 
+            className="card card-bordered shadow-xl" 
             key={user.id}>
               <div className="">
-                <picture>
-                  <img className='w-20 rounded-full'
-                  src={`https://picsum.photos/id/${Math.round(Math.random() * 120)}/200`} alt="" />
-                </picture>
+                <figure>
+                  <img className='rounded-t-2xl'
+                  src={`https://picsum.photos/id/${Math.round(Math.random() * 120)}/1920`} alt="" />
+                </figure>
               </div>
-              <div className="">
-                <span className='text-2xl font-semibold'>{user.name}</span>
+              <div className="card-body">
+                <span className='card-title font-bold'>{user.name}</span>
                 <p>{user.username}</p>
                 <p className='font-thin'>{user.address.street}</p>
                 <p className='font-thin'>{user.address.suite}</p>
                 <p className='font-thin'>{user.address.city}</p>
                 <p className='font-thin'>{user.address.zipcode}</p>
+                <p>{user.company.name}</p>
+                <p>{user.company.catchPhrase}</p>
+                <p>{user.company.bs}</p>
               </div>
           </li>
           )
